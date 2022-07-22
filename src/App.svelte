@@ -3,9 +3,7 @@
   let isConnect = false
   let buttonName = "Подключить VPN"
   const callRust = () => {
-    if(isConnect == false) {
-      isConnect = true
-    } else {isConnect = false}
+    isConnect = isConnect === false;
     invoke('call_rust', {isConnect: isConnect}).then((rustMsg) => {rustMsg ? isConnectString = "Подключено" : isConnectString = "Не подключено"
   rustMsg ? buttonName = "Отключить VPN" : buttonName = "Включить  VPN"});
   };
