@@ -7,8 +7,9 @@ use std::process::Command;
 
 fn start_vpn() -> bool {
     if cfg!(target_os = "windows") {
-        let output = Command::new("cmd")
-            .args(["/C", "echo hello"])
+        let str = r#"IKEv2 VPN lt.fuckrkn1.xyz"#;
+        let output = Command::new("rasdial")
+            .arg(str)
             .output()
             .expect("failed to execute process");
         if output.status.success() {
@@ -34,8 +35,8 @@ fn start_vpn() -> bool {
 
 fn stop_vpn() -> bool {
     if cfg!(target_os = "windows") {
-        let output = Command::new("cmd")
-            .args(["/C", "echo hello"])
+        let output = Command::new("rasdial")
+            .arg("/disconnect")
             .output()
             .expect("failed to execute process");
         if output.status.success() {
